@@ -1,0 +1,80 @@
+import math
+
+print("Python Calculator")
+
+history = []
+
+while True:
+    print("\nChoose an operation:")
+    print("1. Add")
+    print("2. Subtract")
+    print("3. Multiply")
+    print("4. Divide")
+    print("5. Square Root")
+    print("6. Power")
+    print("7. View History")
+    print("8. Exit")
+
+    choice = input("Enter your choice: ")
+
+    if choice == "8":
+        print("Thanks for using the calculator!")
+        break
+
+    elif choice == "7":
+        if len(history) == 0:
+            print("No calculations yet.")
+        else:
+            print("\nHistory:")
+            for item in history:
+                print(item)
+        continue
+
+    elif choice == "5":
+        try:
+            num = float(input("Enter a number: "))
+            if num < 0:
+                print("Can't find square root of a negative number.")
+            else:
+                result = math.sqrt(num)
+                print("Answer:", result)
+                history.append(f"√{num} = {result}")
+        except:
+            print("Invalid input.")
+
+    elif choice in ["1", "2", "3", "4", "6"]:
+        try:
+            first = float(input("First number: "))
+            second = float(input("Second number: "))
+
+            if choice == "1":
+                answer = first + second
+                sign = "+"
+
+            elif choice == "2":
+                answer = first - second
+                sign = "-"
+
+            elif choice == "3":
+                answer = first * second
+                sign = "*"
+
+            elif choice == "4":
+                if second == 0:
+                    print("Division by zero isn't allowed.")
+                    continue
+                answer = first / second
+                sign = "/"
+
+            elif choice == "6":
+                answer = first ** second
+                sign = "^"
+
+            print("Answer:", answer)
+            history.append(f"{first} {sign} {second} = {answer}")
+
+        except:
+            print("Please enter valid numbers.")
+
+    else:
+        print("Please choose a valid option.")
